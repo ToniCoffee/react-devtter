@@ -1,18 +1,26 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 import AppLayout from '../components/app-layout/index'
-import styles from '../styles/Home.module.css'
 import { Button } from '../components/button'
 import Github from '../components/icons/github'
+import { loginWithGithub, onAuthStateChanged } from '../firebase/client'
 
-import { loginWithGithub } from '../firebase/client'
+import styles from '../styles/Home.module.css'
+// import { useEffect } from 'react/cjs/react.production.min'
 
 export default function Home() {
+	const [user, setUser] = useState(undefined);
+
+	useEffect(() => {
+		onAuthStateChanged(setUser);
+	}, []);
+
 	const handleLogin = () => {
 		loginWithGithub()
-			.then(result => console.log(result))
-			.catch(err => console.log(err));
+			.then(setUser)
+			.catch(console.log);
 	}
 
   return (
@@ -32,10 +40,21 @@ export default function Home() {
 					<h1>Devtter</h1>
 					<h2>Talk about development  with developers 👧👦</h2>
 
-					<Button onClick={handleLogin}>
-						<Github fill='#fff' />
-						Login with Github
-					</Button>
+					<div>
+						{
+							user === null && <Button onClick={handleLogin}>
+								<Github fill='#fff' />
+								Login with Github
+							</Button>
+						}
+						{
+							user && user.avatar && <div>
+								<Image width={50} height={50} src={user.avatar} alt='avatar' />
+								<strong>{user.name}</strong>
+							</div>
+						}
+					</div>
+			
 					{/* <h1>
 						<Link href="https://nextjs.org">Devtter</Link>
 					</h1> */}

@@ -21,8 +21,32 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
+// console.log(app.name);
+
+const mapUserFromFirebaseAuthToUser = (user) => {
+	if(user) {
+		const result = user?.reloadUserInfo ? user.reloadUserInfo : user?.user.reloadUserInfo;
+		const { email, photoUrl, screenName } = result;
+		return {
+			avatar: photoUrl,
+			email,
+			name: screenName
+		}
+	} else return null;
+};
+
+export const onAuthStateChanged = (onChange) => {
+	const auth = getAuth();
+	auth.onAuthStateChanged(user => {
+		const normalizedUser = mapUserFromFirebaseAuthToUser(user);
+		onChange(normalizedUser);
+	});
+};
+
 export const loginWithGithub = () => {
 	const auth = getAuth();
 	const githubProvider = new GithubAuthProvider();
-	return signInWithPopup(auth, githubProvider);
+	return signInWithPopup(auth, githubProvider)
+		// .then(mapUserFromFirebaseAuthToUser)
+		.catch(console.log);
 };
