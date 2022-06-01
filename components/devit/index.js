@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 export function Devit({id, avatar, username, name, message, img, createdAt = 0}) {
 	const timeAgo = useTimeAgo(createdAt);
 	const router = useRouter();
-	// console.log(timeAgo);
 
 	const handleArticleClick = e => {
 		e.preventDefault();
@@ -16,15 +15,12 @@ export function Devit({id, avatar, username, name, message, img, createdAt = 0})
 	return (
 		<>
 			<article onClick={handleArticleClick}>
-				{/* <img src={avatar} alt={username} />
-				<p><strong>{username}</strong></p> */}
 				<div>
 					<Avatar
 						src={avatar}
 						alt={username}
 						width={24}
 						height={24}
-						// text={username}
 					/>
 					<div></div>
 				</div>
@@ -80,7 +76,6 @@ export function Devit({id, avatar, username, name, message, img, createdAt = 0})
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
-					/*gap: 8px;*/
 				}
 
 				header a {

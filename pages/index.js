@@ -9,19 +9,14 @@ import Logo from 'components/icons/logo';
 
 import useUser from 'hooks/useUser';
 
-import { loginWithGithub, /*onAuthStateChanged*/ } from '_firebase/client';
+import { loginWithGithub } from '_firebase/client';
 
 import styles from 'styles/home.module.css';
 import { colors } from 'styles/theme';
 
 export default function Home() {
-	// const [user, setUser] = useState(undefined);
 	const user = useUser();
 	const router = useRouter();
-
-	/* useEffect(() => {
-		onAuthStateChanged(setUser);
-	}, []); */
 
 	useEffect(() => {
 		user && router.replace('/home');

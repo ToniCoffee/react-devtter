@@ -13,8 +13,6 @@ export default function Button({children, onClick, disabled}) {
 					font-weight: bold;
 					padding: .5em 1.5em;
 					width: fit-content;
-					/*margin: auto;*/
-					/*margin-top: 24px;*/
 					border-radius: 10px;
 					border: none;
 					transition: opacity .3s ease;

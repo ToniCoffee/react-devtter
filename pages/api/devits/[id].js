@@ -1,5 +1,4 @@
 import { firestore } from '_firebase/admin';
-// import { getDocById } from '_firebase/admin';
 
 export default (req, res) => {
 	const { query } = req;
@@ -21,10 +20,4 @@ export default (req, res) => {
 		.catch(() => {
 			res.status(404).end();
 		});
-
-	/*getDocById(id)
-		.then(doc => {
-			const data = doc.data();
-			res.json(data);
-		});*/
 };

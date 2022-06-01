@@ -36,17 +36,11 @@ export default function DevitForm() {
 
 	useEffect(() => {
 		if(task) {
-			console.log(task);
-			const onStateChange = () => {
-				console.log('onStateChange');
-			};
+			const onStateChange = () => {};
 			const onError = (err) => {
-				console.log('onError');
 				console.log(err);
-				console.log(err.payload);
 			};
 			const onComplete = () => {
-				console.log('onComplete');
 				getImgURL(task).then(setImgURL);
 			};
 

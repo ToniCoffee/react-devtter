@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Devit } from 'components/devit';
-import { /* fetchLatestDevits, */ listenLatestDevits } from '_firebase/client';
+import { listenLatestDevits } from '_firebase/client';
 import useUser from 'hooks/useUser';
 import Link from 'next/link';
 import CreateIcon from 'components/icons/create';
@@ -15,22 +15,6 @@ export default function HomePage() {
 	const user = useUser();
 
 	useEffect(() => {
-		/* fetch('http://localhost:3000/api/statuses/home_timeline')
-			.then(res => {
-				if(!res.ok) throw new Error('Error fetching data at HomePage.');
-				return res;
-			})
-			.then(res => res.json())
-			.then(res => setTimeline(res.data))
-			.catch(err => console.log(err)); */
-
-		/* user && fetchLatestDevits()
-			.then(response => {
-				// console.log(response);
-				setTimeline(response);
-			})
-			.catch(err => console.log(err)); */
-
 		let unsubscribe = null;
 
 		if(user) {
@@ -50,7 +34,6 @@ export default function HomePage() {
 			</header>
 
 			<section>
-				{/* <div></div> */}
 				{
 					timeline.map(data => (
 						<Devit
@@ -103,7 +86,6 @@ export default function HomePage() {
 				}
 
 				section {
-					/*height: 100%;*/
 					position: relative;
 					backdrop-filter: blur(2px);
 					flex-grow: 1;
@@ -117,11 +99,9 @@ export default function HomePage() {
 					height: 100%;
 					background-color: #ccc7;
 					backdrop-filter: blur(4px);
-					/*z-index: -1;*/
 				}
 
 				nav {
-					/*background-color: #004cff;*/
 					background-color: #fff;
 					border-top: 1px solid #ccc;
 					width: 100%;

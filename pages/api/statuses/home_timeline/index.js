@@ -1,5 +1,3 @@
-// import { ServerResponse, IncomingMessage } from 'http';
-
 const timeline = [
 	{
 		id: '0',
@@ -90,11 +88,6 @@ const timeline = [
 	},
 ];
 
-/**
- * 
- * @param {IncomingMessage} req 
- * @param {ServerResponse} res 
- */
 export default function(req, res) {
 	res.statusCode = 200;
 	res.setHeader('Content-Type', 'application/json');

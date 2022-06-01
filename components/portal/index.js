@@ -5,7 +5,6 @@ export default function Portal({text = 'Default text'}) {
 			<style jsx>{`
 				div {
 					padding: .5em 1em;
-					/*border: 1px solid black;*/
 					border-radius: 9999px;
 					background-color: #fff;
 					box-shadow: 0px 0px 10px #aaa;

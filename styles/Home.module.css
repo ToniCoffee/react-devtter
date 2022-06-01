@@ -10,6 +10,5 @@
 	border-radius: inherit;
 	padding: 1em;
 	position: relative;
-	/* background-color: #0003; */
 	backdrop-filter: blur(2px);
 }

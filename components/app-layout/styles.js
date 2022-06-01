@@ -58,17 +58,3 @@ textarea, input {
 	}
 }
 `;
-
-/* export const styles = css`
-	main h1 {
-		color: ${colors.terciary};
-		padding: .5em 0;
-		font-size: 1.75em;
-	}
-
-	main > h2 {
-		color: ${colors.primary};
-		font-size: 1.25em;
-		margin-bottom: 1em;
-	}
-`; */
