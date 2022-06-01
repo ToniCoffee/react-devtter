@@ -4,41 +4,41 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 export function Devit({id, avatar, username, name, message, img, createdAt = 0}) {
-	const timeAgo = useTimeAgo(createdAt);
-	const router = useRouter();
+  const timeAgo = useTimeAgo(createdAt);
+  const router = useRouter();
 
-	const handleArticleClick = e => {
-		e.preventDefault();
-		router.push(`status/${id}`);
-	};
+  const handleArticleClick = e => {
+    e.preventDefault();
+    router.push(`status/${id}`);
+  };
 
-	return (
-		<>
-			<article onClick={handleArticleClick}>
-				<div>
-					<Avatar
-						src={avatar}
-						alt={username}
-						width={24}
-						height={24}
-					/>
-					<div></div>
-				</div>
-				<section>
-					<header>
-						<p><strong>{name ? name : username}</strong></p>
-						<span>-</span>
-						<Link href={`status/${id}`} >
-							<a>
-								<time>{timeAgo}</time>
-							</a>
-						</Link>
-					</header>
-					<p>{message}</p>
-					{img && <img src={img} alt='img alt' />}
-				</section>
-			</article>
-			<style jsx>{`
+  return (
+    <>
+      <article onClick={handleArticleClick}>
+        <div>
+          <Avatar
+            src={avatar}
+            alt={username}
+            width={24}
+            height={24}
+          />
+          <div></div>
+        </div>
+        <section>
+          <header>
+            <p><strong>{name ? name : username}</strong></p>
+            <span>-</span>
+            <Link href={`status/${id}`} >
+              <a>
+                <time>{timeAgo}</time>
+              </a>
+            </Link>
+          </header>
+          <p>{message}</p>
+          {img && <img src={img} alt='img alt' />}
+        </section>
+      </article>
+      <style jsx>{`
 				article {
 					display: flex;
 					padding: 10px 15px;
@@ -95,6 +95,6 @@ export function Devit({id, avatar, username, name, message, img, createdAt = 0})
 					width: 100%;
 				}
 			`}</style>
-		</>
-	);
+    </>
+  );
 }

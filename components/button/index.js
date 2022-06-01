@@ -1,8 +1,8 @@
 export default function Button({children, onClick, disabled}) {
-	return (
-		<>
-			<button disabled={disabled} onClick={onClick}>{children}</button>
-			<style jsx>{`
+  return (
+    <>
+      <button disabled={disabled} onClick={onClick}>{children}</button>
+      <style jsx>{`
 				button {
 					display: flex;
 					align-items: center;
@@ -28,6 +28,6 @@ export default function Button({children, onClick, disabled}) {
 					opacity: .7;
 				}
 			`}</style>
-		</>
-	);
+    </>
+  );
 }

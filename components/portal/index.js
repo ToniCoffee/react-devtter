@@ -1,8 +1,8 @@
 export default function Portal({text = 'Default text'}) {
-	return (
-		<>
-			<div id='portal-root'>{text}</div>
-			<style jsx>{`
+  return (
+    <>
+      <div id='portal-root'>{text}</div>
+      <style jsx>{`
 				div {
 					padding: .5em 1em;
 					border-radius: 9999px;
@@ -33,6 +33,6 @@ export default function Portal({text = 'Default text'}) {
 					}
 				}
 			`}</style>
-		</>
-	);
+    </>
+  );
 }

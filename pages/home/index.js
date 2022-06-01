@@ -11,61 +11,61 @@ import { colors } from 'styles/theme';
 import Head from 'next/head';
 
 export default function HomePage() {
-	const [timeline, setTimeline] = useState([]);
-	const user = useUser();
+  const [timeline, setTimeline] = useState([]);
+  const user = useUser();
 
-	useEffect(() => {
-		let unsubscribe = null;
+  useEffect(() => {
+    let unsubscribe = null;
 
-		if(user) {
-			unsubscribe = listenLatestDevits(setTimeline);
-		}
+    if(user) {
+      unsubscribe = listenLatestDevits(setTimeline);
+    }
 
-		return () => unsubscribe && unsubscribe();
-	}, [user]);
+    return () => unsubscribe && unsubscribe();
+  }, [user]);
 
-	return (
-		<>
-			<Head>
-				<title>Inicio / Devtter</title>
-			</Head>
-			<header>
-				<h2>Inicio</h2>
-			</header>
+  return (
+    <>
+      <Head>
+        <title>Inicio / Devtter</title>
+      </Head>
+      <header>
+        <h2>Inicio</h2>
+      </header>
 
-			<section>
-				{
-					timeline.map(data => (
-						<Devit
-							key={data.id}
-							id={data.id}
-							avatar={data.avatar}
-							username={data.username}
-							img={data.img}
-							name={data.username}
-							message={data.message}
-							createdAt={data.createdAt}
-						/>
-					))
-				}
-			</section>
+      <section>
+        {
+          timeline.map(data => (
+            <Devit
+              key={data.id}
+              id={data.id}
+              avatar={data.avatar}
+              username={data.username}
+              img={data.img}
+              name={data.username}
+              message={data.message}
+              createdAt={data.createdAt}
+            />
+          ))
+        }
+      </section>
 
-			<nav>
-				<Link href='/home'>
-					<a><HomeIcon width={32} height={32} /></a>
-				</Link>
-				<Link href='/devit/tweet'>
-					<a><SearchIcon width={32} height={32} /></a>
-				</Link>
-				<Link href='/devit/tweet'>
-					<a><LikeIcon width={32} height={32} /></a>
-				</Link>
-				<Link href='/devit/tweet'>
-					<a><CreateIcon width={32} height={32} /></a>
-				</Link>
-			</nav>
+      <nav>
+        <Link href='/home'>
+          <a><HomeIcon width={32} height={32} /></a>
+        </Link>
+        <Link href='/devit/tweet'>
+          <a><SearchIcon width={32} height={32} /></a>
+        </Link>
+        <Link href='/devit/tweet'>
+          <a><LikeIcon width={32} height={32} /></a>
+        </Link>
+        <Link href='/devit/tweet'>
+          <a><CreateIcon width={32} height={32} /></a>
+        </Link>
+      </nav>
 
-			<style jsx>{`
+      <style jsx>{`
 				header {
 					display: flex;
 					align-items: center;
@@ -132,6 +132,6 @@ export default function HomePage() {
 					fill: ${colors.red};
 				}
 			`}</style>
-		</>
-	);
+    </>
+  );
 }
