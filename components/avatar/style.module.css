@@ -1,0 +1,33 @@
+.avatar {
+	border-radius: 7px;
+	/* border: 1px solid #aaa; */
+	/* box-shadow: 0px 0px 10px #aaa; */
+	width: fit-content;
+	/* margin: auto; */
+	/* padding: 1em; */
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	gap: .5em;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: .5em;
+}
+
+.avatarImgContainer {
+	display: flex;
+	background-color: #333;
+	margin: auto;
+	border-radius: 9999px;
+	padding: .25em;
+	overflow: hidden;
+}
+
+.avatarImg {
+	border-radius: 9999px;
+}

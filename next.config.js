@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+	reactStrictMode: true,
 	images: {
 		domains: [
-			'avatars.githubusercontent.com'
+			'avatars.githubusercontent.com',
+			'pbs.twimg.com',
+			'randomuser.me'
 		]
 	}
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

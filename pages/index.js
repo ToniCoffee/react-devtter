@@ -1,81 +1,82 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
-import AppLayout from '../components/app-layout/index'
-import { Button } from '../components/button'
-import Github from '../components/icons/github'
-import { loginWithGithub, onAuthStateChanged } from '../firebase/client'
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { /* useState, */ useEffect } from 'react';
 
-import styles from '../styles/Home.module.css'
-// import { useEffect } from 'react/cjs/react.production.min'
+import Button from 'components/button';
+import Avatar from 'components/avatar';
+import Github from 'components/icons/github';
+import Logo from 'components/icons/logo';
+
+import useUser from 'hooks/useUser';
+
+import { loginWithGithub, /*onAuthStateChanged*/ } from '_firebase/client';
+
+import styles from 'styles/home.module.css';
+import { colors } from 'styles/theme';
 
 export default function Home() {
-	const [user, setUser] = useState(undefined);
+	// const [user, setUser] = useState(undefined);
+	const user = useUser();
+	const router = useRouter();
+
+	/* useEffect(() => {
+		onAuthStateChanged(setUser);
+	}, []); */
 
 	useEffect(() => {
-		onAuthStateChanged(setUser);
-	}, []);
+		user && router.replace('/home');
+	}, [user]);
 
 	const handleLogin = () => {
 		loginWithGithub()
-			.then(setUser)
+			// .then(setUser)
 			.catch(console.log);
-	}
+	};
 
-  return (
-    <>
-      <Head>
-        <title>Devtter 🐰</title>
-        <meta name="description" content="Twitter clone" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+	return (
+		<>
+			<Head>
+				<title>Devtter 🐰</title>
+				<meta name="description" content="Twitter clone" />
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
 
-      <AppLayout>
-        <section className={styles.section}>
-					<div></div>
-					<div>
-						<Image src={'/vercel.svg'} alt='logo' width={150} height={50} />
-					</div>
-					<h1>Devtter</h1>
-					<h2>Talk about development  with developers 👧👦</h2>
+			<section className={styles.section}>
+				<div></div>
+				<div>
+					<Logo width={200} height={50} fill={colors.terciary} />
+				</div>
+				<h1>Devtter</h1>
+				<h2>Talk about development  with developers 👧👦</h2>
 
-					<div>
-						{
-							user === null && <Button onClick={handleLogin}>
+				<div>
+					{ user === null && 
+							<Button onClick={handleLogin}>
 								<Github fill='#fff' />
 								Login with Github
 							</Button>
-						}
-						{
-							user && user.avatar && <div>
-								<Image width={50} height={50} src={user.avatar} alt='avatar' />
-								<strong>{user.name}</strong>
-							</div>
-						}
-					</div>
-			
-					{/* <h1>
-						<Link href="https://nextjs.org">Devtter</Link>
-					</h1> */}
-				</section>
-      </AppLayout>
-    </>
-  )
+					}
+					{ user && user.avatar && 
+							<Avatar 
+								src={user.avatar} 
+								alt={user.username} 
+								text={user.username}
+							/>
+					}
+				</div>
+			</section>
+
+			<style jsx>{`
+				h1 {
+					color: ${colors.terciary};
+					font-size: 1.75em;
+				}
+
+				h2 {
+					color: ${colors.primary};
+					font-size: 1.25em;
+				}
+			`}</style>
+		</>
+	);
 }
-
-/* return (
-	<div className={styles.container}>
-		<Head>
-			<title>Devtter 🐰</title>
-			<meta name="description" content="Twitter clone" />
-			<link rel="icon" href="/favicon.ico" />
-		</Head>
-
-		<AppLayout className={styles.main}>
-			<h1 className={styles.title}>
-				<Link href="https://nextjs.org">Devtter</Link>
-			</h1>
-		</AppLayout>
-	</div>
-) */

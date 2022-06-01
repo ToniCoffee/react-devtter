@@ -1,7 +1,7 @@
-export const Button = ({children, onClick}) => {
+export default function Button({children, onClick, disabled}) {
 	return (
 		<>
-			<button onClick={onClick}>{children}</button>
+			<button disabled={disabled} onClick={onClick}>{children}</button>
 			<style jsx>{`
 				button {
 					display: flex;
@@ -11,13 +11,19 @@ export const Button = ({children, onClick}) => {
 					background-color: #333;
 					color: #fff;
 					font-weight: bold;
-					padding: 1em 1.5em;
+					padding: .5em 1.5em;
 					width: fit-content;
-					margin: auto;
-					margin-top: 24px;
+					/*margin: auto;*/
+					/*margin-top: 24px;*/
 					border-radius: 10px;
 					border: none;
 					transition: opacity .3s ease;
+					user-select: none;
+				}
+
+				button[disabled] {
+					opacity: .2;
+					pointer-events: none;
 				}
 
 				button:hover {
@@ -25,5 +31,5 @@ export const Button = ({children, onClick}) => {
 				}
 			`}</style>
 		</>
-	)
-};
+	);
+}

@@ -1,51 +1,17 @@
-// import '../../styles/global.css'
-import { colors, fonts } from '../../styles/theme'
-import { addOpacityToColor } from '../../styles/util'
-
-const pointsBackgroundColor = addOpacityToColor(colors.primary, 1);
+import ClientPortal from 'components/client-portal';
+import Portal from 'components/portal';
+import { globalStyles } from './styles';
 
 export default function AppLayout({ children }) {
 	return (
 		<>
-			<main>{children}</main>
-			<style jsx global>{`
-				*,
-				*::before,
-				*::after {
-					box-sizing: border-box;
-					padding: 0;
-					margin: 0;
-				}
-
-				html,
-				body {
-					background-image: 
-						radial-gradient(${pointsBackgroundColor}, 1px, transparent 1px),
-						radial-gradient(${pointsBackgroundColor}, 1px, transparent 1px);
-					background-position: 0 0, 25px 25px;
-					background-size: 50px 50px;
-					font-family: ${fonts.base};
-					font-size: 1rem;
-				}
-				
-				h1 {
-					color: ${colors.secondary};
-					padding: .5em 0;
-					font-size: 1.75em;
-				}
-
-				h2 {
-					color: ${colors.primary};
-					font-size: 1.25em;
-				}
-				
-				a {
-					color: inherit;
-					text-decoration: none;
-				}
-			`}</style>
+			<main id='root'>{children}</main>
+			<ClientPortal selector='#root'>
+				<Portal />
+			</ClientPortal>
+			<style jsx global>{globalStyles}</style>
 		</>
-	)
+	);
 }
 
 // font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
